@@ -275,8 +275,8 @@ function RadialMenu:__construct()
                 -- Draw the ped headshot
                 DrawSprite(
                   headshotTexture, headshotTexture,
-                  -4, 5, -- Center of screen
-                  0.1, 0.1, -- Width, Height
+                  0.78, 0.12, -- positve is right, positive is down | no more than 1
+                  0.071, 0.178, -- Width, Height
                   0.0, -- Rotation
                   255, 255, 255, 255 -- Color
                 )
