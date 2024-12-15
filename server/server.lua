@@ -122,7 +122,7 @@ function RadialMenu:getPlayerData()
   local user = vRP.users_by_source[source]
   if user == nil or not user then return print('user is not initialized or not user') end
   local identity = user.identity
-  print(json.encode(identity))
+  --print(json.encode(identity))
   return identity
 end
 
