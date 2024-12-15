@@ -28,6 +28,7 @@ function RadialMenu:__construct()
 
   --[[Functions]]--
   -- This function loads the police actions in the radial menu when user is police.
+
   local function PoliceItems(self)
     exports["ox_lib"]:addRadialItem({
       {
@@ -220,6 +221,14 @@ function RadialMenu:__construct()
       icon = "money-bill-wave",
       onSelect = function()
         self.remote._GiveMoney()
+      end
+    },
+    {
+      id = "storeweapons",
+      label = "Store Weapons",
+      icon = "shield",
+      onSelect = function()
+        self.remote._store_weapons()
       end
     },
     {
