@@ -44,6 +44,10 @@ function RadialMenu:callAdmin()
   end
 
   local desc = user:prompt(lang.admin.call_admin.prompt(), "") or ""
+  if desc == "" then
+    vRP.EXT.Base.remote._notify(user.source, "You cannot create an empty ticket.")
+    return
+  end
   local answered = false
 
   local admins = {}
@@ -123,7 +127,9 @@ function RadialMenu:getPlayerData()
   if user == nil or not user then return print('user is not initialized or not user') end
   local identity = user.identity
   --print(json.encode(identity))
-  return identity
+  local address = vRP.EXT.Home:getAddress(user.cid)
+  print("' "..json.encode(address) .." '".. 'This is the address')
+  return {identity, address}
 end
 
 function RadialMenu:stopMission()

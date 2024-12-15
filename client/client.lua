@@ -28,7 +28,6 @@ function RadialMenu:__construct()
 
   --[[Functions]]--
   -- This function loads the police actions in the radial menu when user is police.
-
   local function PoliceItems(self)
     exports["ox_lib"]:addRadialItem({
       {
@@ -232,14 +231,6 @@ function RadialMenu:__construct()
       end
     },
     {
-      id = "cancelmission",
-      label = "Cancel Mission",
-      icon = "shield",
-      onSelect = function()
-        self.remote._stopMission()
-      end
-    },
-    {
       id = "getidentity",
       label = "ID Card",
       icon = "id-card",
@@ -256,10 +247,11 @@ function RadialMenu:__construct()
             action = "setVisible",
             data = true,
           })
-          local identity = self.remote.getPlayerData()
+          --SetNuiFocus(false, false)
+          local pldata = self.remote.getPlayerData()
           SendNUIMessage({
             action = "setID",
-            data = identity
+            data = pldata
           })
         end
       end
