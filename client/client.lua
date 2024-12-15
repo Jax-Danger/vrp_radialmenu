@@ -247,15 +247,46 @@ function RadialMenu:__construct()
             action = "setVisible",
             data = true,
           })
-          --SetNuiFocus(false, false)
+
           local pldata = self.remote.getPlayerData()
           SendNUIMessage({
             action = "setID",
             data = pldata
           })
+
+          local ped = PlayerPedId()
+          local pedHeadshot = RegisterPedheadshot(ped)
+
+          Citizen.CreateThread(function()
+            while not IsPedheadshotReady(pedHeadshot) or not IsPedheadshotValid(pedHeadshot) do
+              Citizen.Wait(100)
+            end
+
+            local headshotTexture = GetPedheadshotTxdString(pedHeadshot)
+
+            SendNUIMessage({
+              action = "setHeadshot",
+              headshot = headshotTexture
+            })
+
+            Citizen.CreateThread(function()
+              while active do
+                Citizen.Wait(0)
+                -- Draw the ped headshot
+                DrawSprite(
+                  headshotTexture, headshotTexture,
+                  -4, 5, -- Center of screen
+                  0.1, 0.1, -- Width, Height
+                  0.0, -- Rotation
+                  255, 255, 255, 255 -- Color
+                )
+              end
+              UnregisterPedheadshot(pedHeadshot)
+            end)
+          end)
         end
       end
-    },
+    }
   })
 
   -- This is a check to see if the player is police, and if so, it'll call the function to give the nessessary actions in the menu.
