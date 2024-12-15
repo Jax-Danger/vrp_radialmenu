@@ -126,6 +126,13 @@ function RadialMenu:getPlayerData()
   return identity
 end
 
+function RadialMenu:stopMission()
+  local user = vRP.users_by_source[source]
+  if user then
+    user:stopMission()
+  end
+end
+
 RadialMenu.tunnel = {}
 
 RadialMenu.tunnel.getNearestOwnedVehicle = RadialMenu.getNearestOwnedVehicle
@@ -135,5 +142,6 @@ RadialMenu.tunnel.giveMoney = RadialMenu.giveMoney
 RadialMenu.tunnel.Repair = RadialMenu.Repair
 RadialMenu.tunnel.store_weapons = RadialMenu.store_weapons
 RadialMenu.tunnel.getPlayerData = RadialMenu.getPlayerData
+RadialMenu.tunnel.stopMission = RadialMenu.stopMission
 
 vRP:registerExtension(RadialMenu)
