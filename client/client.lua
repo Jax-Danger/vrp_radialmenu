@@ -223,11 +223,11 @@ function RadialMenu:__construct()
       end
     },
     {
-      id = "storeweapons",
-      label = "Store Weapons",
+      id = "cancelmission",
+      label = "Cancel Mission",
       icon = "shield",
       onSelect = function()
-        self.remote._store_weapons()
+        self.remote._stopMission()
       end
     },
     {
