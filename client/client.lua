@@ -231,6 +231,14 @@ function RadialMenu:__construct()
       end
     },
     {
+      id = "cancelmission",
+      label = "Cancel Mission",
+      icon = "shield",
+      onSelect = function()
+        self.remote._stopMission()
+      end
+    },
+    {
       id = "getidentity",
       label = "ID Card",
       icon = "id-card",
